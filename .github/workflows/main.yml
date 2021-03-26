@@ -48,4 +48,3 @@ jobs:
           key: ${{ secrets.ACTION_SSH_KEY }}
           passphrase: ${{ secrets.ACTION_SSH_PASSPHRASE }}
           script: docker pull seelerei0130/rasamukun
-          echo test, and deploy your project.
