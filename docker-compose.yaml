@@ -1,0 +1,5 @@
+version: "3"
+services:
+  rasamukun:
+    image: rasamukun
+    env_file: rasamukun.env
