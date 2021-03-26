@@ -1,5 +1,5 @@
 version: "3"
 services:
   rasamukun:
-    image: rasamukun
+    image: seelerei0130/rasamukun
     env_file: rasamukun.env
