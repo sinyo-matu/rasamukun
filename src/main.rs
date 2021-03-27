@@ -13,7 +13,7 @@ use upstream::{QiitaClient, SOFClient};
 use std::env;
 
 #[group]
-#[commands(qiita, overflow, kani)]
+#[commands(qiita, overflow, ja_overflow, kani)]
 struct General;
 
 struct Handler;
@@ -65,6 +65,30 @@ async fn overflow(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult
         args.single::<String>()?
     };
     let res_body = SOFClient::get_en_questions(&tag).await?;
+    let bot_res = match res_body.items.is_empty() {
+        true => String::from("見つからなかったサム"),
+        _ => {
+            let mut bot_res = String::from("以下は関係ありそうサム！\n");
+            for item in res_body.items {
+                bot_res = format!("{}{}\n", bot_res, item.link);
+            }
+            bot_res
+        }
+    };
+    msg.reply(ctx, bot_res).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn ja_overflow(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
+    let tag = if args.is_empty() {
+        msg.reply(ctx, "なんか指定してくれ").await?;
+        return Ok(());
+    } else {
+        args.single::<String>()?
+    };
+    let res_body = SOFClient::get_ja_questions(&tag).await?;
     let bot_res = match res_body.items.is_empty() {
         true => String::from("見つからなかったサム"),
         _ => {
