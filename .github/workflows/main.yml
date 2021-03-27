@@ -47,4 +47,7 @@ jobs:
           username: ${{ secrets.ACTION_SSH_USER }}
           key: ${{ secrets.ACTION_SSH_KEY }}
           passphrase: ${{ secrets.ACTION_SSH_PASSPHRASE }}
-          script: docker pull seelerei0130/rasamukun
+          script: |
+          docker pull seelerei0130/rasamukun
+          cd app/rasamukun
+          docker-compose up -d
