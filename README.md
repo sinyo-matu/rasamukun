@@ -1,4 +1,4 @@
-#ラサムくん
+# ラサムくん
 
 Discord サーバー[Rust-SAMURAI](https://disboard.org/ja/server/818441066716856332)で稼働中のボットです。
 [Rust](https://www.rust-lang.org/)について話したり、週末のもくもく会をやっています。
